@@ -17,6 +17,10 @@
     --border: #e5e8ee;
 }
 
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
     box-sizing: border-box;
 }
@@ -27,35 +31,54 @@ html {
 
 body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
+    padding: 0;
+
+    font-family: "Inter", sans-serif;
     color: var(--text);
     background: #ffffff;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 h1,
 h2,
 h3,
-h4 {
-    font-family: 'Manrope', sans-serif;
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    font-family: "Manrope", sans-serif;
+}
+
+p {
+    margin-top: 0;
 }
 
 a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
 }
 
 button,
 input,
 textarea,
 select {
-    font-family: inherit;
+    font: inherit;
 }
+
+img {
+    max-width: 100%;
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
 
 .container {
     width: min(1180px, calc(100% - 40px));
     margin: 0 auto;
 }
-
 
 /* =========================================================
    NAVBAR
@@ -66,9 +89,10 @@ select {
     top: 0;
     z-index: 1000;
 
-    background: rgba(255, 255, 255, 0.96);
-
+    background: rgba(255, 255, 255, 0.97);
     border-bottom: 1px solid rgba(13, 35, 87, 0.08);
+
+    backdrop-filter: blur(12px);
 }
 
 .navbar {
@@ -126,11 +150,15 @@ select {
     transform: translateY(-1px);
 }
 
+/* Mobile menu button */
+
 .mobile-menu-button {
     display: none;
 
     width: 42px;
     height: 42px;
+
+    padding: 0;
 
     border: 0;
     background: transparent;
@@ -138,10 +166,22 @@ select {
     cursor: pointer;
 }
 
+.mobile-menu-button span {
+    display: block;
+
+    width: 22px;
+    height: 2px;
+
+    margin: 5px auto;
+
+    background: var(--nadapro-navy);
+
+    transition: 0.2s ease;
+}
+
 .mobile-nav {
     display: none;
 }
-
 
 /* =========================================================
    HERO
@@ -159,8 +199,8 @@ select {
         ),
         linear-gradient(
             135deg,
-            #ffffff,
-            #f4f6fa
+            #ffffff 0%,
+            #f4f6fa 100%
         );
 }
 
@@ -169,6 +209,7 @@ select {
 
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
+
     align-items: center;
 
     gap: 80px;
@@ -240,7 +281,6 @@ select {
 .secondary-button {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     gap: 15px;
 
     padding: 15px 22px;
@@ -269,15 +309,16 @@ select {
 
 .secondary-button {
     color: var(--nadapro-navy);
-    background: transparent;
-
     border: 1px solid #d8dce4;
+    background: white;
 }
 
 .secondary-button:hover {
     color: var(--nadapro-gold);
     border-color: var(--nadapro-gold);
 }
+
+/* Hero support information */
 
 .hero-support-info {
     display: flex;
@@ -337,9 +378,8 @@ select {
     background: var(--border);
 }
 
-
 /* =========================================================
-   HERO SUPPORT CARD
+   HERO CARD
 ========================================================= */
 
 .hero-card-wrapper {
@@ -363,8 +403,7 @@ select {
 
     border-radius: 8px;
 
-    box-shadow:
-        0 30px 80px rgba(13, 35, 87, 0.25);
+    box-shadow: 0 30px 80px rgba(13, 35, 87, 0.25);
 }
 
 .hero-card-header {
@@ -435,6 +474,7 @@ select {
     padding: 15px 18px;
 
     color: var(--nadapro-navy);
+
     background: var(--nadapro-gold);
 
     border-radius: 4px;
@@ -442,14 +482,11 @@ select {
     font-size: 13px;
     font-weight: 800;
 
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
+    transition: background 0.2s ease;
 }
 
 .hero-card-button:hover {
     background: #d49a3d;
-    transform: translateY(-1px);
 }
 
 .hero-card-footer {
@@ -463,7 +500,6 @@ select {
 .hero-card-footer span {
     color: var(--nadapro-gold);
 }
-
 
 /* =========================================================
    SERVICES
@@ -497,6 +533,7 @@ select {
 
 .services-grid {
     display: grid;
+
     grid-template-columns: repeat(3, 1fr);
 
     gap: 20px;
@@ -520,8 +557,7 @@ select {
 .service-card:hover {
     transform: translateY(-6px);
 
-    box-shadow:
-        0 20px 50px rgba(13, 35, 87, 0.1);
+    box-shadow: 0 20px 50px rgba(13, 35, 87, 0.1);
 }
 
 .service-card.featured {
@@ -530,6 +566,7 @@ select {
 
 .service-number {
     position: absolute;
+
     top: 24px;
     right: 28px;
 
@@ -584,7 +621,6 @@ select {
     color: var(--nadapro-gold);
 }
 
-
 /* =========================================================
    ABOUT
 ========================================================= */
@@ -597,7 +633,9 @@ select {
 
 .about-container {
     display: grid;
+
     grid-template-columns: 0.85fr 1.15fr;
+
     align-items: center;
 
     gap: 100px;
@@ -614,6 +652,7 @@ select {
 
     display: flex;
     flex-direction: column;
+
     align-items: center;
     justify-content: center;
 
@@ -623,14 +662,14 @@ select {
 
     border-radius: 6px;
 
-    box-shadow:
-        25px 25px 0 var(--nadapro-gold);
+    box-shadow: 25px 25px 0 var(--nadapro-gold);
 }
 
 .about-card span {
     color: rgba(255, 255, 255, 0.6);
 
     font-size: 11px;
+
     letter-spacing: 0.2em;
 }
 
@@ -688,7 +727,6 @@ select {
     color: var(--nadapro-gold);
 }
 
-
 /* =========================================================
    SUPPORT CTA
 ========================================================= */
@@ -699,6 +737,7 @@ select {
 
 .support-cta-card {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
@@ -735,8 +774,9 @@ select {
     color: #d49a3d;
 }
 
-.support-cta-card > a {
+.gold-button {
     display: inline-flex;
+
     align-items: center;
     gap: 15px;
 
@@ -752,17 +792,11 @@ select {
 
     font-size: 13px;
     font-weight: 800;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
 }
 
-.support-cta-card > a:hover {
+.gold-button:hover {
     background: #d49a3d;
-    transform: translateY(-1px);
 }
-
 
 /* =========================================================
    FOOTER
@@ -776,6 +810,7 @@ select {
 
 .footer-grid {
     display: grid;
+
     grid-template-columns: 1.5fr 1fr 1fr;
 
     gap: 70px;
@@ -839,9 +874,8 @@ select {
     font-size: 11px;
 }
 
-
 /* =========================================================
-   CUSTOMER AUTH PAGE
+   CUSTOMER AUTH
 ========================================================= */
 
 .customer-auth-page {
@@ -851,7 +885,7 @@ select {
 
     color: #182033;
 
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 .auth-wrapper {
@@ -863,7 +897,9 @@ select {
 
 .auth-back {
     display: inline-flex;
+
     align-items: center;
+
     gap: 8px;
 
     margin-bottom: 35px;
@@ -887,6 +923,7 @@ select {
     margin: 0 auto;
 
     display: grid;
+
     grid-template-columns: 1fr 1fr;
 
     overflow: hidden;
@@ -895,14 +932,10 @@ select {
 
     border-radius: 18px;
 
-    box-shadow:
-        0 20px 60px rgba(13, 35, 87, 0.1);
+    box-shadow: 0 20px 60px rgba(13, 35, 87, 0.1);
 }
 
-
-/* =========================================================
-   AUTH LEFT SIDE
-========================================================= */
+/* Left side */
 
 .auth-info {
     position: relative;
@@ -911,9 +944,10 @@ select {
 
     display: flex;
     flex-direction: column;
+
     justify-content: center;
 
-    color: #ffffff;
+    color: white;
 
     background: #0d2357;
 }
@@ -949,6 +983,7 @@ select {
 
     font-size: clamp(38px, 4vw, 54px);
     line-height: 1.08;
+
     font-weight: 700;
 
     letter-spacing: -1.5px;
@@ -971,7 +1006,9 @@ select {
 
 .response-note {
     display: flex;
+
     align-items: flex-start;
+
     gap: 14px;
 
     margin-top: 45px;
@@ -986,12 +1023,13 @@ select {
     height: 32px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     flex-shrink: 0;
 
-    color: #ffffff;
+    color: white;
 
     background: #c1801a;
 
@@ -1019,19 +1057,17 @@ select {
     line-height: 1.5;
 }
 
-
-/* =========================================================
-   AUTH RIGHT SIDE
-========================================================= */
+/* Right side */
 
 .auth-card {
     padding: 65px 55px;
 
     display: flex;
     flex-direction: column;
+
     justify-content: center;
 
-    background: #ffffff;
+    background: white;
 }
 
 .auth-card-header {
@@ -1069,13 +1105,11 @@ select {
     line-height: 1.6;
 }
 
-
-/* =========================================================
-   AUTH FORM
-========================================================= */
+/* Form */
 
 .auth-form {
     display: flex;
+
     flex-direction: column;
 
     gap: 19px;
@@ -1083,6 +1117,7 @@ select {
 
 .form-group {
     display: flex;
+
     flex-direction: column;
 
     gap: 8px;
@@ -1100,15 +1135,14 @@ select {
 
     padding: 14px 15px;
 
-    box-sizing: border-box;
-
-    outline: none;
-
     color: #182033;
+
     background: #ffffff;
 
     border: 1px solid #e0e3e9;
     border-radius: 8px;
+
+    outline: none;
 
     font-family: inherit;
     font-size: 14px;
@@ -1129,14 +1163,13 @@ select {
         0 0 0 3px rgba(193, 128, 26, 0.1);
 }
 
-
-/* =========================================================
-   AUTH OPTIONS
-========================================================= */
+/* Options */
 
 .form-options {
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     margin-top: -5px;
@@ -1146,6 +1179,7 @@ select {
 
 .remember {
     display: flex;
+
     align-items: center;
 
     gap: 7px;
@@ -1161,23 +1195,19 @@ select {
     color: #0d2357;
 
     font-weight: 600;
-
-    transition: color 0.2s ease;
 }
 
 .form-options a:hover {
     color: #c1801a;
 }
 
-
-/* =========================================================
-   AUTH BUTTON
-========================================================= */
+/* Button */
 
 .auth-submit {
     width: 100%;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -1187,11 +1217,12 @@ select {
 
     padding: 15px 20px;
 
-    color: #ffffff;
-    background: #c1801a;
-
     border: none;
     border-radius: 8px;
+
+    color: #ffffff;
+
+    background: #c1801a;
 
     font-family: inherit;
     font-size: 14px;
@@ -1210,13 +1241,11 @@ select {
     transform: translateY(-1px);
 }
 
-
-/* =========================================================
-   AUTH SWITCH
-========================================================= */
+/* Switch */
 
 .auth-switch {
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -1239,12 +1268,11 @@ select {
     color: #0d2357;
 
     font-family: inherit;
+
     font-size: 13px;
     font-weight: 700;
 
     cursor: pointer;
-
-    transition: color 0.2s ease;
 }
 
 .auth-switch button:hover {
@@ -1252,12 +1280,11 @@ select {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
-
 /* =========================================================
-   MOBILE
+   TABLET
 ========================================================= */
 
 @media (max-width: 900px) {
@@ -1270,26 +1297,16 @@ select {
         display: block;
     }
 
-    .mobile-menu-button span {
-        display: block;
-
-        width: 22px;
-        height: 2px;
-
-        margin: 5px auto;
-
-        background: var(--nadapro-navy);
-    }
-
     .mobile-nav.active {
         display: flex;
+
         flex-direction: column;
 
         padding: 10px 20px 20px;
 
         background: white;
 
-        border-top: 1px solid var(--border);
+        border-top: 1px solid rgba(13, 35, 87, 0.06);
     }
 
     .mobile-nav a {
@@ -1305,6 +1322,7 @@ select {
         padding: 13px !important;
 
         color: white !important;
+
         background: var(--nadapro-navy);
 
         text-align: center;
@@ -1340,8 +1358,14 @@ select {
         text-align: center;
     }
 
+    .about-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .support-cta-card {
         flex-direction: column;
+
         align-items: flex-start;
     }
 
@@ -1374,9 +1398,8 @@ select {
     }
 }
 
-
 /* =========================================================
-   SMALL MOBILE
+   MOBILE
 ========================================================= */
 
 @media (max-width: 600px) {
@@ -1385,21 +1408,37 @@ select {
         width: calc(100% - 28px);
     }
 
+    .navbar {
+        min-height: 70px;
+    }
+
+    .brand img {
+        width: 125px;
+    }
+
     .hero h1 {
         font-size: 43px;
     }
 
+    .hero-description {
+        font-size: 15px;
+    }
+
     .hero-actions {
         flex-direction: column;
+
         align-items: stretch;
     }
 
     .hero-actions a {
         width: 100%;
+
+        justify-content: center;
     }
 
     .hero-support-info {
         flex-direction: column;
+
         align-items: flex-start;
     }
 
@@ -1407,20 +1446,47 @@ select {
         display: none;
     }
 
+    .hero-card {
+        padding: 30px;
+    }
+
+    .services-section,
+    .about-section {
+        padding: 75px 0;
+    }
+
+    .section-heading h2 {
+        font-size: 38px;
+    }
+
     .about-card {
         width: 280px;
         height: 280px;
+
+        box-shadow: 18px 18px 0 var(--nadapro-gold);
+    }
+
+    .about-card strong {
+        font-size: 65px;
     }
 
     .about-content h2 {
         font-size: 38px;
     }
 
+    .support-cta {
+        padding: 70px 0;
+    }
+
     .support-cta-card {
         padding: 35px 25px;
     }
 
-    .support-cta-card > a {
+    .support-cta-card h2 {
+        font-size: 28px;
+    }
+
+    .gold-button {
         width: 100%;
 
         justify-content: center;
@@ -1430,6 +1496,8 @@ select {
         grid-template-columns: 1fr;
 
         gap: 35px;
+
+        padding: 50px 0;
     }
 
     .auth-wrapper {
@@ -1450,37 +1518,9 @@ select {
 
     .form-options {
         align-items: flex-start;
+
         flex-direction: column;
 
         gap: 10px;
-    }
-}
-
-
-/* =========================================================
-   EXTRA SMALL DEVICES
-========================================================= */
-
-@media (max-width: 380px) {
-
-    .hero h1 {
-        font-size: 37px;
-    }
-
-    .hero-card {
-        padding: 30px 24px;
-    }
-
-    .section-heading h2 {
-        font-size: 38px;
-    }
-
-    .about-card {
-        width: 240px;
-        height: 240px;
-    }
-
-    .about-card strong {
-        font-size: 65px;
     }
 }
