@@ -20,6 +20,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
 
 WORKDIR /var/www/html
 
+# Copy project
 COPY . .
 
 # Install PHP dependencies
@@ -32,14 +33,19 @@ RUN composer install \
 RUN npm install
 RUN npm run build
 
-# Laravel permissions
-RUN mkdir -p storage/framework/cache \
+# Create Laravel required directories
+RUN mkdir -p \
+    storage/framework/cache \
     storage/framework/sessions \
     storage/framework/views \
+    storage/logs \
     bootstrap/cache
 
+# Set permissions
 RUN chmod -R 775 storage bootstrap/cache
 
+# Render port
 EXPOSE 10000
 
-CMD php artisan serve --host=0.0.0.0 --port=${PORT:-10000}
+# Start Laravel
+CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=${PORT:-10000}"]
